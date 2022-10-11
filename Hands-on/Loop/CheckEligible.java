@@ -1,3 +1,13 @@
+/*
+
+check you are eligible for vote or not
+author:bhakti khandekar
+date:11/10/2022
+*/
+
+
+
+
 package corejava.basic;
 import java.util.Scanner;
  class CheckEligible 
