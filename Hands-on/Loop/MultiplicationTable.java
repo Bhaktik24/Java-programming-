@@ -1,3 +1,12 @@
+/*
+Printing Multiplication table
+Author:Bhakti Khandekar
+date: 11/10/2022
+
+*/
+
+
+
 package corejava.basic;
 import java.util.Scanner;
 public class MultiplicationTable {
