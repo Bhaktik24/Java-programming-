@@ -1,0 +1,183 @@
+mysql> create database Employee;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| employee           |
+| employees          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+
+mysql> use Employee;
+Database changed
+mysql> create table Data(
+    -> id int not null auto_increment,
+    -> name varchar(20) not null,
+    -> location varchar(30) not null,
+    -> age int not null,
+    -> primary key(id)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> show tables;
++--------------------+
+| Tables_in_employee |
++--------------------+
+| data               |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> desc data;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(20) | NO   |     | NULL    |                |
+| location | varchar(30) | NO   |     | NULL    |                |
+| age      | int         | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into data values(101,'Bhakti','AMB',21);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into data values(102,'Pooja','AMB',27);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from data;
++-----+--------+----------+-----+
+| id  | name   | location | age |
++-----+--------+----------+-----+
+| 101 | Bhakti | AMB      |  21 |
+| 102 | Pooja  | AMB      |  27 |
++-----+--------+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> update data set location='KYN' where id=102;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from data;
++-----+--------+----------+-----+
+| id  | name   | location | age |
++-----+--------+----------+-----+
+| 101 | Bhakti | AMB      |  21 |
+| 102 | Pooja  | KYN      |  27 |
++-----+--------+----------+-----+
+2 rows in set (0.00 sec)
+
+mysql> alter table data add salary int not null;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc data;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(20) | NO   |     | NULL    |                |
+| location | varchar(30) | NO   |     | NULL    |                |
+| age      | int         | NO   |     | NULL    |                |
+| salary   | int         | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from data;
++-----+--------+----------+-----+--------+
+| id  | name   | location | age | salary |
++-----+--------+----------+-----+--------+
+| 101 | Bhakti | AMB      |  21 |      0 |
+| 102 | Pooja  | KYN      |  27 |      0 |
++-----+--------+----------+-----+--------+
+2 rows in set (0.00 sec)
+
+mysql> update data set salary=15000 where id=101;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update data set salary=10000 where id=102;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from data;
++-----+--------+----------+-----+--------+
+| id  | name   | location | age | salary |
++-----+--------+----------+-----+--------+
+| 101 | Bhakti | AMB      |  21 |  15000 |
+| 102 | Pooja  | KYN      |  27 |  10000 |
++-----+--------+----------+-----+--------+
+2 rows in set (0.00 sec)
+
+
+mysql> alter table data modify name varchar(50) null;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc data;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int         | NO   | PRI | NULL    | auto_increment |
+| name     | varchar(50) | YES  |     | NULL    |                |
+| location | varchar(30) | NO   |     | NULL    |                |
+| age      | int         | NO   |     | NULL    |                |
+| salary   | int         | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> alter table data drop column location;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc data;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(50) | YES  |     | NULL    |                |
+| age    | int         | NO   |     | NULL    |                |
+| salary | int         | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> alter table data rename to empdata;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc empdata;
++--------+-------------+------+-----+---------+----------------+
+| Field  | Type        | Null | Key | Default | Extra          |
++--------+-------------+------+-----+---------+----------------+
+| id     | int         | NO   | PRI | NULL    | auto_increment |
+| name   | varchar(50) | YES  |     | NULL    |                |
+| age    | int         | NO   |     | NULL    |                |
+| salary | int         | NO   |     | NULL    |                |
++--------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc data;
+ERROR 1146 (42S02): Table 'employee.data' doesn't exist
+mysql> delete from empdata where id=102;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from empdata;
++-----+--------+-----+--------+
+| id  | name   | age | salary |
++-----+--------+-----+--------+
+| 101 | Bhakti |  21 |  15000 |
++-----+--------+-----+--------+
+1 row in set (0.00 sec)
+
+mysql> drop table empdata;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from empdata;
+ERROR 1146 (42S02): Table 'employee.empdata' doesn't exist
+mysql>
+
